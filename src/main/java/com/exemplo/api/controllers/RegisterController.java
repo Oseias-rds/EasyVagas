@@ -1,6 +1,5 @@
-package com.exemplo.api;
+package com.exemplo.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +10,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.exemplo.api.DTOS.CreateDto;
+import com.exemplo.api.models.VacancyModel;
+import com.exemplo.api.services.RegistrationService;
 
 @Controller
 @RestController
@@ -30,7 +33,7 @@ public class RegisterController {
 	
 	@PatchMapping
 	@PutMapping(value="/{id}")
-	public VacancyModel update(@PathVariable("id") long id, @RequestBody VacancyModel newData) {
+	public VacancyModel update(@PathVariable("id") long id, @RequestBody CreateDto newData) {
 		return regService.update(id, newData);
 		
 	}

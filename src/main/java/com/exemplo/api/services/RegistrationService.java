@@ -1,10 +1,13 @@
-package com.exemplo.api;
+package com.exemplo.api.services;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.exemplo.api.DTOS.CreateDto;
+import com.exemplo.api.models.VacancyModel;
+import com.exemplo.api.repositories.RegistrationRepository;
 
 //mesmo metodos controller 
 
