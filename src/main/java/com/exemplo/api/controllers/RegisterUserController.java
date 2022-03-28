@@ -23,18 +23,18 @@ import com.exemplo.api.services.RegistrationUserService;
 public class RegisterUserController {
 
 	@Autowired
-	public RegistrationUserService registrtion;
+	public RegistrationUserService registration;
 	
 	
 	@PostMapping
 	public ClientModel create(@Valid @RequestBody CreateUseresDTO obj) {
-		return registrtion.create(obj);
+		return registration.create(obj);
 	}
 	
 	
 	@PatchMapping(value="/{id}")
 	public ClientModel update(@PathVariable("id") long id, @RequestBody CreateUseresDTO newData) {
-		return registrtion.update(id, newData);
+		return registration.update(id, newData);
 	}
 	
 	@GetMapping
@@ -43,7 +43,9 @@ public class RegisterUserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete() {}
+	public void delete(@PathVariable ("id") Long id) {
+		registration.delete(id);
+	}
 	
 
 }

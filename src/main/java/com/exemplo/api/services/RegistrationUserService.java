@@ -38,7 +38,10 @@ public class RegistrationUserService {
 	}
 	
 	
-	public void delete() {}
+	public void delete(Long id) {
+		Optional<ClientModel> cm = registration.findById(id);
+		registration.delete(cm.get());
+	}
 	
 	public void read() {}
 
