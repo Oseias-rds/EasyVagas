@@ -27,18 +27,20 @@ public class RegisterUserController {
 	
 	
 	@PostMapping
-	public ClientModel create(@Valid @RequestBody CreateUseresDTO obj) {
+	public ClientModel create(@Valid @RequestBody CreateUseresDTO obj) throws Exception {
 		return registration.create(obj);
 	}
 	
 	
 	@PatchMapping(value="/{id}")
-	public ClientModel update(@PathVariable("id") long id, @RequestBody CreateUseresDTO newData) {
+	public ClientModel update(@PathVariable("id") long id, @RequestBody CreateUseresDTO newData) throws Exception {
 		return registration.update(id, newData);
 	}
 	
 	@GetMapping
-	public void read() {
+	@PatchMapping(value="/{id}")
+	public ClientModel read(@PathVariable ("id") Long id) {
+		return registration.read(id);
 		
 	}
 	
@@ -46,6 +48,7 @@ public class RegisterUserController {
 	public void delete(@PathVariable ("id") Long id) {
 		registration.delete(id);
 	}
+	
 	
 
 }

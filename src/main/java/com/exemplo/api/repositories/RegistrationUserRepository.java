@@ -8,4 +8,5 @@ import com.exemplo.api.models.ClientModel;
 @Repository
 public interface RegistrationUserRepository  extends CrudRepository<ClientModel, Long>{
 
+	
 }

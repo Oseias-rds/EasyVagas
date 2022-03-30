@@ -9,7 +9,8 @@ import com.exemplo.api.DTOS.CreateDto;
 import com.exemplo.api.models.VacancyModel;
 import com.exemplo.api.repositories.RegistrationRepository;
 
-//mesmo metodos controller 
+//mesmo metodos controller,
+
 
 @Service
 public class RegistrationService {
@@ -28,7 +29,8 @@ public class RegistrationService {
 	
 	
 	public VacancyModel update(long id, CreateDto newData) {
-
+		
+		
 		Optional<VacancyModel> vm = regRepository.findById(id);
 		vm.get().setNumber(newData.getNumber());
 		return regRepository.save(vm.get());
