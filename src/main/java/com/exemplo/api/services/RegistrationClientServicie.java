@@ -1,28 +1,32 @@
 package com.exemplo.api.services;
 
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.exemplo.api.DTOS.CreateUseresDTO;
-import com.exemplo.api.models.UserModel;
-import com.exemplo.api.repositories.RegistrationUserRepository;
+import com.exemplo.api.DTOS.CreateClientDTO;
+import com.exemplo.api.models.ClientModel;
+import com.exemplo.api.repositories.RegistrationClientRepository;
 
-//verificar email
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+/*
+ * AS CLASSES DE CADATRO-USUARIO E CADATRO-CLIENTE SEGUEM O MESMO PARAMETRO DE VERIFICAÇÃO
+ * SENDO ASSIM AS CLASSES TERÃO UM SEGUIMENTO E PADRONIZAÇÃP UNICA 
+ * OQUE VAI VARIAR SÃO AS HERANÇAS
+ */
 
 @Service
-public class RegistrationUserService {
-
+public class RegistrationClientServicie {
+	
 	
 	@Autowired
-	public RegistrationUserRepository registration;
+	public RegistrationClientRepository registration;
 	
 	
-	public UserModel create(CreateUseresDTO obj) throws Exception {
-		UserModel cm = new UserModel();
+	public ClientModel create(CreateClientDTO obj) throws Exception {
+		ClientModel cm = new ClientModel();
 		boolean verification = isValidEmail(obj.getEmail());
 		
 		if(verification == false) {
@@ -31,6 +35,7 @@ public class RegistrationUserService {
 		
 		cm.setEmail(obj.getEmail());
 		cm.setName(obj.getName());
+		cm.setCpf(obj.getCpf());
 		cm.setPassword(obj.getPassword());
 		return registration.save(cm);
 		
@@ -38,7 +43,7 @@ public class RegistrationUserService {
 	}
 	
 	
-	public UserModel update(Long id, CreateUseresDTO newData) throws Exception {
+	public ClientModel update(Long id, CreateClientDTO newData) throws Exception {
 		boolean verification = isValidEmail (newData.getEmail());
 		
 		//({!verification}=>>>>verificatio == false)
@@ -47,7 +52,7 @@ public class RegistrationUserService {
 		}
 		
 		
-		Optional<UserModel> cm = registration.findById(id);
+		Optional<ClientModel> cm = registration.findById(id);
 		cm.get().setEmail(newData.getEmail());
 		cm.get().setName(newData.getName());
 		cm.get().setPassword(newData.getPassword());
@@ -56,11 +61,11 @@ public class RegistrationUserService {
 	
 	
 	public void delete(Long id) {
-		Optional<UserModel> cm = registration.findById(id);
+		Optional<ClientModel> cm = registration.findById(id);
 		registration.delete(cm.get());
 	}
 	
-	public UserModel read(Long id) {
+	public ClientModel read(Long id) {
 		return registration.findById(id).get();
 		
 		
@@ -78,8 +83,10 @@ public class RegistrationUserService {
         }
         return isEmailIdValid;
     }
-		
+	
+	//metodo para verificar se o CPF É VALIDO
+	/*
+	 * 
+	 */
 
-	
-	
 }
